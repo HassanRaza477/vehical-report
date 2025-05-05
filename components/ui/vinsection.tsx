@@ -2,10 +2,14 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
+// Define allowed report types as a constant array
+const REPORT_TYPES = ['Free', 'Standard', 'Premium'] as const;
+type ReportType = typeof REPORT_TYPES[number];
+
 export default function HomePage() {
   const router = useRouter();
   const [vin, setVin] = useState('');
-  const [reportType, setReportType] = useState<'Free' | 'Standard' | 'Premium'>('Free');
+  const [reportType, setReportType] = useState<ReportType>('Free');
 
   const handleGenerateReport = () => {
     if (vin.length !== 17) {
@@ -19,7 +23,9 @@ export default function HomePage() {
   return (
     <div className="max-w-full mx-auto px-6 py-20 text-center bg-gradient-to-r from-[#fefdff] to-[#d4c3f0]">
       <h1 className="text-5xl font-bold text-[#1c1162] mb-4">Vehicle Report Generator</h1>
-      <p className="text-lg text-gray-600 mb-4">Enter your vehicle  VIN number and select a report type to view your vehicle details.</p>
+      <p className="text-lg text-gray-600 mb-4">
+        Enter your vehicle VIN number and select a report type to view your vehicle details.
+      </p>
 
       <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-200 max-w-xl mx-auto">
         <input
@@ -31,19 +37,27 @@ export default function HomePage() {
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-          {['Free', 'Standard', 'Premium'].map((type) => (
-            <label key={type} className="flex items-center space-x-2 bg-gray-50 px-4 py-3 rounded-md shadow-sm border cursor-pointer">
+          {REPORT_TYPES.map((type) => (
+            <label
+              key={type}
+              className="flex items-center space-x-2 bg-gray-50 px-4 py-3 rounded-md shadow-sm border cursor-pointer"
+            >
               <input
                 type="radio"
                 name="reportType"
                 value={type}
                 checked={reportType === type}
-                onChange={() => setReportType(type as any)}
+                onChange={() => setReportType(type)}
               />
               <span className="text-lg">
-                {type}<br />
+                {type}
+                <br />
                 <span className="text-xs text-gray-500">
-                  {type === 'Free' ? '(Basic Info)' : type === 'Standard' ? '($9.99)' : '($19.99)'}
+                  {type === 'Free'
+                    ? '(Basic Info)'
+                    : type === 'Standard'
+                    ? '($9.99)'
+                    : '($19.99)'}
                 </span>
               </span>
             </label>
