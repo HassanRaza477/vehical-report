@@ -9,7 +9,27 @@ export default function ReportPage() {
   const vin = searchParams.get('vin') || '';
   const reportType = (searchParams.get('reportType') || 'Free') as 'Free' | 'Standard' | 'Premium';
 
-  const [vehicleData, setVehicleData] = useState<any>(null);
+  interface VehicleData {
+    VIN: string;
+    Make: string;
+    Model: string;
+    ModelYear: string;
+    VehicleType?: string;
+    EngineCylinders?: string;
+    EngineModel?: string;
+    FuelTypePrimary?: string;
+    BodyClass?: string;
+    PlantCountry?: string;
+    AirBagLocFront?: string;
+    AirBagLocSide?: string;
+    DriveType?: string;
+    BrakeSystemDesc?: string;
+    Trim?: string;
+    TransmissionStyle?: string;
+    EngineHP?: string;
+  }
+
+  const [vehicleData, setVehicleData] = useState<VehicleData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

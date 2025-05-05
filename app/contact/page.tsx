@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
-import { FaRegEnvelope, FaUser, FaPhoneAlt, FaRegComment } from 'react-icons/fa';
+import { FaRegEnvelope, FaUser, FaRegComment } from 'react-icons/fa';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

@@ -67,7 +67,7 @@ export default function CheckoutPage() {
 
         {/* Order Summary */}
         <div className="text-gray-600 text-sm">
-          You're buying a <strong>{reportType}</strong> report for <strong>${getPrice()}</strong>
+          You are buying a <strong>{reportType}</strong> report for <strong>${getPrice()}</strong>
         </div>
 
         {/* User Inputs */}
